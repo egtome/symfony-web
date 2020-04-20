@@ -1,3 +1,20 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+home:
+    path: /
+    controller: App\Controller\HomeController::index
+    
+about:
+    path: /about/{days}/{months}/{day_name}
+    controller: App\Controller\HomeController::about
+    defaults: {days: 7, months: 1, day_name : 'monday'}
+    methods: [GET]
+    requirements:
+        days: '[0-9]+'
+        months: '[0-9]+'
+        day_name: '[a-zA-Z]+'
+        
+redir:
+    path: /redir
+    controller: App\Controller\HomeController::redir        
