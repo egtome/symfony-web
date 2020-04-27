@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <title>
+            {% block title %} 
+                DEFAULT 
+            {% endblock %} - Learning Symfony 5
+        </title>
+    </head>
+    
+    <body>
+        <div id="header">
+            {% block header %} 
+                <h1>Default header</h1> 
+            {% endblock %}
+            
+        </div>
+            
+        <section id="content">
+            {% block content %}
+                <p>Default content</p>
+            {% endblock %}
+        </section>
+        
+        {#
+        <div>HOW TO COMMENT</div>
+        #}
+        
+        <footer id="footer">
+            <a href="http://test.symfonyweb.com/twig" target="_blank">visit us!</a>
+        </footer>
+    </body>
+</html>

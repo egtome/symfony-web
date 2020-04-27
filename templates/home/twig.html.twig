@@ -1,0 +1,80 @@
+{% extends 'layouts/master.html.twig' %}
+{% set my_var = 'das content' %}
+
+{%  block title %} {{ page_title }} {%  endblock %}
+
+{%  block header %}
+    {#
+        print block default content..
+        {{ parent() }}
+        
+    #}
+    {{ parent() }}
+    <ul>
+        <li>Home</li>
+        <li>About</li>
+    </ul>
+   
+{%  endblock %}
+
+{%  block content %}
+    {#
+    {{ dump(categories) }}
+    #}
+    {# Arrays #}    
+    <b>{{ categories[0] }}</b>
+    <b>{{ people.0.id ~ ' -- ' ~ people.0.name}}</b>
+    <p>Este es el contenido</p>
+    <p>{{ my_var }}</p>
+    
+    {% if people.0.name == 'Gino'%}
+        Is
+    {% else %}   
+        Not
+    {% endif %}   
+    
+    {% if people|length >=1 %}
+        <ul>
+            {% for person in people %}
+                <li>{{ person.id }}</li>
+                <li>{{ person.name }}</li>
+                <li>{{ person.phone }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% for i in 0..20 %}
+        {{ i }}
+    {% endfor %}
+    <br/>
+    {% for i in 0..people|length %}
+        {{ i }}
+    {% endfor %}
+    {% if people.0.name starts with 'G' %}
+        Yes!
+    {% endif %}    
+    {% if people.0.name ends with 'no' %}
+        Yes!
+    {% endif %}  
+    <br/>
+    {{ min(scores) }}
+    <br/>
+    {{ max(scores) }}
+    <br/>
+    {{ random(scores) }}
+    <br/>
+    {%  set my_array = range(0,100) %}
+    {% for test in my_array %}
+       {# {{ test }}<br/> #}
+    {% endfor %}
+
+    {% for i in range(0,100) %}
+        {{ random(my_array) }}
+    {% endfor %}
+    <hr/>
+    {% for i in range(0,100,10) %}
+        {{ i ~ ' -- das value'}}<br>
+    {% endfor %}
+    {% include('partials/range.html.twig') %}
+    {% include('partials/filters-example.html.twig') %}
+    {% include('partials/custom.html.twig') %}
+{%  endblock %}

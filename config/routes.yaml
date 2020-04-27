@@ -5,6 +5,10 @@ home:
     path: /
     controller: App\Controller\HomeController::index
     
+twig:
+    path: /twig
+    controller: App\Controller\HomeController::twig
+    methods: [GET]
 about:
     path: /about/{days}/{months}/{day_name}
     controller: App\Controller\HomeController::about

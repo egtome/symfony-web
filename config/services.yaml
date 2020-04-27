@@ -22,6 +22,11 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+        
+    # add Twig functions and filters...        
+    App\Twig\:
+        resource: '../src/Twig'
+        tags: ['twigs.extension']
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

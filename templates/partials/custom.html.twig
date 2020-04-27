@@ -1,0 +1,6 @@
+{% set rand_days = random(scores) %}
+<hr/>
+<h1>Custom Filters example</h1>
+{{ addDays(rand_days)|raw }}
+{{ rand_days|addDaysFilter|raw }}
+<hr/>

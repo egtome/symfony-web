@@ -33,6 +33,24 @@ class HomeController extends ToolsController
         return $this->render('home/about.html.twig', $data);        
     }
     
+    public function twig()
+    {
+        $data = [
+            'page_title' => 'Twig section',
+            'categories' => ['House','Apt','Office'],
+            'people' => [
+                '0' => [
+                    'name' => 'Gino tome',
+                    'id' => '514788965',
+                    'phone' => '12345'                    
+                ]
+            ],
+            'scores' => [98,45,76,55,66]
+            
+        ];
+        return $this->render('home/twig.html.twig', $data);        
+    }
+    
     public function redir()
     {
         //return $this->redirectToRoute('about',['days' => 15,'months' => 70, 'day_name' => 'lunes'],301);
