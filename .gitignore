@@ -16,4 +16,5 @@
 ###< symfony/phpunit-bridge ###
 
 nbproject/
+
 .env
