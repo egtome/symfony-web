@@ -21,4 +21,20 @@ about:
         
 redir:
     path: /redir
-    controller: App\Controller\HomeController::redir        
+    controller: App\Controller\HomeController::redir   
+    
+animal_index:
+    path: /animal
+    controller: App\Controller\AnimalController::index  
+    
+animal_save:
+    path: /animal/save
+    methods: [GET,POST]
+    controller: App\Controller\AnimalController::save   
+    
+animal_get:
+    path: /animal/get/{id}
+    methods: [GET]
+    controller: App\Controller\AnimalController::get_by_id 
+    requirements:
+        id: '[0-9]+'
