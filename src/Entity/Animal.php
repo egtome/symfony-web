@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Animals
  *
@@ -25,6 +25,15 @@ class Animal
      * @var string|null
      *
      * @ORM\Column(name="type", type="string", length=45, nullable=true)
+     * @Assert\NotBlank
+     * @Assert\Type(
+     *      type="string",
+     *      message="The value {{ value }} is not a valid {{ type }}"
+     * )
+     * @Assert\Regex(
+     *      pattern = "/[a-zA-Z]/",
+     *      message="NO! just letters here"
+     * )
      */
     private $type;
 
@@ -32,6 +41,8 @@ class Animal
      * @var string|null
      *
      * @ORM\Column(name="color", type="string", length=45, nullable=true)
+     * @Assert\NotBlank
+     * @Assert\Regex("/[a-zA-Z]/")
      */
     private $color;
 
@@ -39,6 +50,8 @@ class Animal
      * @var string|null
      *
      * @ORM\Column(name="breed", type="string", length=45, nullable=true)
+     * @Assert\NotBlank
+     * @Assert\Regex("/[a-zA-Z]/")
      */
     private $breed;
     
@@ -46,6 +59,8 @@ class Animal
      * @var int|null
      *
      * @ORM\Column(name="age", type="integer", nullable=true)
+     * @Assert\NotBlank
+     * @Assert\Regex("/[0-9]/")
      */
     private $age;
 

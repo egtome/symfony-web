@@ -8,14 +8,63 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Entity\Animal;
 use App\Repository\AnimalRepository;
 
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Encoder\XmlEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
+use App\Form\AnimalType;
+
+# Manual validations
+use Symfony\Component\Validator\Validation;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\Length;
 
 
 class AnimalController extends ReturnController
 {
+    public function validateEmail($email)
+    {
+        # Check: https://symfony.com/doc/current/reference/constraints.html
+        $validator = Validation::createValidator();
+        $errors = $validator->validate($email,[new Email(),new Length(['min' => 15])]);
+        if($errors->count()){
+            foreach($errors as $err){
+                echo $err . '<br>';
+            }
+        }else{
+            echo 'valid';
+        }
+        die();
+    }
+    
+    public function createAnimal(Request $request)
+    {
+        $animal = new Animal();
+        $form = $this->createForm(AnimalType::class,$animal);
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($animal);
+            $em->flush();
+
+            //echo '<pre>';var_dump($animal);die();
+            //Flash session
+            $session = new Session();
+            $session->getFlashBag()->add('message', 'Created!');
+            $session->getFlashBag()->add('message', 'OK');
+            return $this->redirectToRoute('animal_create');
+            
+        }
+        return $this->render('animal/create-animal.html.twig',['form' => $form->createView()]);
+    }
+    
+    public function store(Request $request)
+    {
+        $type = $request->get('type');
+        $animal = new Animal;
+        $animal->setType($type);
+        echo $type;die();
+        return $this->returnOne(new Animal);
+    }
     
     public function test_search(int $id)
     {

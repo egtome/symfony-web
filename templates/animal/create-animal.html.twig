@@ -1,0 +1,8 @@
+<h1>Symfony</h1>
+
+{% for message in app.session.flashbag().get('message') %}
+    <marquee>{{ message }}</marquee>
+{% endfor %}
+{{ form_start(form) }}
+{{ form_widget(form) }}
+{{ form_end(form) }}

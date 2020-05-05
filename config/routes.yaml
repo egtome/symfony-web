@@ -30,7 +30,12 @@ animal_index:
 animal_save:
     path: /animal/save
     methods: [GET,POST]
-    controller: App\Controller\AnimalController::save   
+    controller: App\Controller\AnimalController::save 
+    
+animal_store:
+    path: /animal/store
+    methods: [POST,GET]
+    controller: App\Controller\AnimalController::store   
     
 animal_get:
     path: /animal/{id}
@@ -38,6 +43,11 @@ animal_get:
     controller: App\Controller\AnimalController::get_by_id 
     requirements:
         id: '[0-9]+'
+        
+animal_create:
+    path: /animal/create
+    methods: [GET,POST]
+    controller: App\Controller\AnimalController::createAnimal       
         
 animal_update:
     path: /animal/update/{id}
@@ -58,3 +68,8 @@ test_search:
     methods: [GET]
     controller: App\Controller\AnimalController::test_search 
     defaults: {id: 0}
+    
+validate_email:
+    path: /validate/email/{email}
+    methods: [GET]
+    controller: App\Controller\AnimalController::validateEmail 
